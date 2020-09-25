@@ -77,7 +77,7 @@ import { Bad } from "@/static/BadScript-Regular.ttf";
 export default {
   data() {
     return {
-      nome: "Sergio Carvalho",
+      nome: "",
       loading: false
     };
   },
