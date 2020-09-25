@@ -12,8 +12,8 @@
       por favor aguarde um instante...
       <i class="gg-spinner mt-8"></i>
     </div>
-    <main class="flex items-center">
-      <div class="w-3/5">
+    <main class="flex flex-col md:flex-row items-center">
+      <div class="w-full md:w-3/5 px-8 md:px-0">
         <div
           class="text-white font-bold"
           style="text-shadow: 2px 2px 4px #000;"
@@ -25,7 +25,7 @@
             <img src="/logo.png" alt="" />
           </header>
           <p>Olá !</p>
-          <p class="my-2 text-xl">
+          <p class="my-2 md:text-xl">
             Preencha seu nome completo no campo abaixo para fazer o download de
             seu certificado de participação da FORMAÇÃO EM INTELIGÊNCIA
             EMOCIONAL - ministrado pelo
@@ -38,7 +38,7 @@
           </p>
         </div>
         <footer>
-          <form @submit.prevent="geraPDF" class="flex mt-8 items-end">
+          <form @submit.prevent="geraPDF" class="flex flex-col md:flex-row mt-8 items-end">
             <label
               class="flex flex-col text-white w-full"
               style="text-shadow: 2px 2px 4px #000;"
@@ -54,12 +54,12 @@
             <input
               type="submit"
               value="Baixar meu certificado"
-              class="shadow-lg px-4 py-2 bg-green-500 text-green-100 font-bold ml-4 cursor-pointer"
+              class="w-full md:w-auto shadow-lg px-4 py-2 bg-green-500 text-green-100 font-bold mt-2 md:mt-0 md:ml-4 cursor-pointer"
             />
           </form>
         </footer>
       </div>
-      <div class="w-2/5">
+      <div class="hidden md:flex md:w-2/5">
         <img
           src="https://blob.contato.io/machine-user-images/foto2-img-2125937-20200811170257.png"
           alt="Marlos Ramos"
@@ -84,19 +84,6 @@ export default {
   methods: {
     async geraPDF() {
       this.loading = true;
-
-      let nome = this.nome.toLowerCase().split(" ");
-      for (let index = 0; index < nome.length; index++) {
-        nome[index] =
-          nome[index].charAt(0).toUpperCase() + nome[index].slice(1);
-      }
-      nome = nome
-        .join(" ")
-        .replace(/ Da /g, " da ")
-        .replace(/ De /g, " de ")
-        .replace(/ Dos /g, " dos ");
-
-      this.nome = nome;
 
       const doc = new jsPDF({ orientation: "landscape" });
 
@@ -123,7 +110,7 @@ export default {
 <style>
 body {
   background: url("https://blob.contato.io/machine-user-images/banner-fundo-lead-img-2125937-20200811160429.png")
-    0% 0% / cover repeat scroll rgba(0, 0, 0, 0);
+    0% 0% / cover repeat scroll #1574a4;
 }
 
 .gg-spinner {
