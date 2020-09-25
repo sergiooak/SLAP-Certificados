@@ -38,7 +38,10 @@
           </p>
         </div>
         <footer>
-          <form @submit.prevent="geraPDF" class="flex flex-col md:flex-row mt-8 items-end">
+          <form
+            @submit.prevent="geraPDF"
+            class="flex flex-col md:flex-row mt-8 items-end"
+          >
             <label
               class="flex flex-col text-white w-full"
               style="text-shadow: 2px 2px 4px #000;"
@@ -84,6 +87,19 @@ export default {
   methods: {
     async geraPDF() {
       this.loading = true;
+
+      let nome = this.nome.toLowerCase().split(" ");
+      for (let index = 0; index < nome.length; index++) {
+        nome[index] =
+          nome[index].charAt(0).toUpperCase() + nome[index].slice(1);
+      }
+      nome = nome
+        .join(" ")
+        .replace(/ Da /g, " da ")
+        .replace(/ De /g, " de ")
+        .replace(/ Dos /g, " dos ");
+
+      this.nome = nome;
 
       const doc = new jsPDF({ orientation: "landscape" });
 
